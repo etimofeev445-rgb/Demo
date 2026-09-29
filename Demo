@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>UAT App</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      min-height: 100vh;
+      background: #0b0b0f;
+      color: #fff;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      padding: 16px;
+      padding-bottom: 40px;
+      -webkit-font-smoothing: antialiased;
+      user-select: none;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .header h1 {
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .header p {
+      color: #8b8b9e;
+      font-size: 13px;
+      margin-top: 4px;
+    }
+
+    /* Верхні маленькі кнопки */
+    .top-nav {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .top-btn {
+      padding: 12px;
+      border-radius: 14px;
+      border: 1px solid #2a2a35;
+      background: #16161d;
+      color: #aaa;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .top-btn.active {
+      background: #0f2a1f;
+      border-color: #00e676;
+      color: #00e676;
+    }
+
+    /* Синя кнопка Connect */
+    .connect-btn {
+      width: 100%;
+      padding: 14px;
+      border-radius: 14px;
+      border: none;
+      background: #2a7cff;
+      color: white;
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      cursor: pointer;
+    }
+
+    /* Великі кнопки */
+    .main-btns {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .main-btn {
+      width: 100%;
+      padding: 16px;
+      border-radius: 16px;
+      border: none;
+      font-size: 16px;
+      font-weight: 600;
+      color: white;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .btn-card     { background: linear-gradient(135deg, #f6d365, #fda085); color: #333; }
+    .btn-exchange { background: linear-gradient(135deg, #a18cd1, #fbc2eb); }
+    .btn-buy      { background: linear-gradient(135deg, #84fab0, #8fd3f4); color: #033; }
+    .btn-news     { background: linear-gradient(135deg, #4facfe, #00f2fe); }
+
+    /* Сторінки */
+    .page { display: none; }
+    .page.active { display: block; }
+
+    .page-content {
+      background: #16161d;
+      border: 1px solid #2a2a35;
+      border-radius: 16px;
+      padding: 20px;
+      margin-top: 10px;
+      min-height: 180px;
+    }
+
+    .back {
+      display: inline-block;
+      margin-bottom: 14px;
+      color: #00e676;
+      font-size: 14px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <h1>UAT App</h1>
+    <p>Кошелёк · Курс НБУ · Telegram</p>
+  </div>
+
+  <!-- ГОЛОВНИЙ ЕКРАН -->
+  <div id="home" class="page active">
+    <div class="top-nav" id="top-nav"></div>
+
+    <button class="connect-btn" onclick="openPage('wallet')">
+      ◇ Connect Wallet
+    </button>
+
+    <div class="main-btns" id="main-btns"></div>
+  </div>
+
+  <!-- СТОРІНКИ -->
+  <div id="wallet" class="page">
+    <div class="back" onclick="openPage('home')">← Назад</div>
+    <div class="page-content">
+      <h3>Кошелёк</h3>
+      <p style="margin-top:12px;color:#aaa">Тут буде баланс і історія.</p>
+    </div>
+  </div>
+
+  <div id="rate" class="page">
+    <div class="back" onclick="openPage('home')">← Назад</div>
+    <div class="page-content">
+      <h3>Курс НБУ / TON</h3>
+      <p style="margin-top:12px;color:#aaa">Тут будуть актуальні курси.</p>
+    </div>
+  </div>
+
+  <div id="card" class="page">
+    <div class="back" onclick="openPage('home')">← Назад</div>
+    <div class="page-content">
+      <h3>Відкрити карту</h3>
+      <p style="margin-top:12px;color:#aaa">Тут буде відкриття карти.</p>
+    </div>
+  </div>
+
+  <div id="exchange" class="page">
+    <div class="back" onclick="openPage('home')">← Назад</div>
+    <div class="page-content">
+      <h3>Обмін</h3>
+      <p style="margin-top:12px;color:#aaa">Тут буде обмін валют / UAT.</p>
+    </div>
+  </div>
+
+  <div id="buy" class="page">
+    <div class="back" onclick="openPage('home')">← Назад</div>
+    <div class="page-content">
+      <h3>Купити UAT</h3>
+      <p style="margin-top:12px;color:#aaa">Тут буде покупка UAT.</p>
+    </div>
+  </div>
+
+  <div id="news" class="page">
+    <div class="back" onclick="openPage('home')">← Назад</div>
+    <div class="page-content">
+      <h3>Оголошення</h3>
+      <p style="margin-top:12px;color:#aaa">Тут будуть новини та оголошення.</p>
+    </div>
+  </div>
+
+  <script>
+    // ===== Telegram =====
+    const tg = window.Telegram?.WebApp;
+    if (tg) {
+      tg.ready();
+      tg.expand();
+    }
+
+    // ===== Дані кнопок (тут все налаштовується) =====
+    const topButtons = [
+      { id: 'wallet', title: '💳 Кошелёк', active: true },
+      { id: 'telegram', title: '📱 Telegram' },
+      { id: 'ton', title: 'TON' },
+      { id: 'rate', title: 'Курс' }
+    ];
+
+    const mainButtons = [
+      { id: 'card',     title: '💳 Відкрити карту', className: 'btn-card' },
+      { id: 'exchange', title: '↔️ Обмін',          className: 'btn-exchange' },
+      { id: 'buy',      title: '💰 Купити UAT',     className: 'btn-buy' },
+      { id: 'news',     title: '📋 Оголошення',     className: 'btn-news' }
+    ];
+
+    // ===== Малюємо кнопки =====
+    function renderButtons() {
+      // Верхні кнопки
+      document.getElementById('top-nav').innerHTML = topButtons.map(btn => `
+        <button class="top-btn \( {btn.active ? 'active' : ''}" onclick="openPage(' \){btn.id}')">
+          ${btn.title}
+        </button>
+      `).join('');
+
+      // Великі кнопки
+      document.getElementById('main-btns').innerHTML = mainButtons.map(btn => `
+        <button class="main-btn \( {btn.className}" onclick="openPage(' \){btn.id}')">
+          ${btn.title}
+        </button>
+      `).join('');
+    }
+
+    // ===== Навігація =====
+    function openPage(id) {
+      // Спеціальна обробка для Telegram
+      if (id === 'telegram') {
+        if (tg) tg.openTelegramLink('https://t.me/');
+        return;
+      }
+
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      const page = document.getElementById(id);
+      if (page) page.classList.add('active');
+    }
+
+    // Запуск
+    renderButtons();
+  </script>
+</body>
+</html>
