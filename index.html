@@ -1,247 +1,308 @@
 <!DOCTYPE html>
-<html lang="uk">
+<html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>UAT App</title>
-  <script src="https://telegram.org/js/telegram-web-app.js"></script>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    body {
-      min-height: 100vh;
-      background: #0b0b0f;
-      color: #fff;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      padding: 16px;
-      padding-bottom: 40px;
-      -webkit-font-smoothing: antialiased;
-      user-select: none;
-    }
-
-    .header {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
-    .header h1 {
-      font-size: 24px;
-      font-weight: 700;
-    }
-
-    .header p {
-      color: #8b8b9e;
-      font-size: 13px;
-      margin-top: 4px;
-    }
-
-    /* Верхні маленькі кнопки */
-    .top-nav {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin-bottom: 16px;
-    }
-
-    .top-btn {
-      padding: 12px;
-      border-radius: 14px;
-      border: 1px solid #2a2a35;
-      background: #16161d;
-      color: #aaa;
-      font-size: 14px;
-      font-weight: 600;
-      cursor: pointer;
-    }
-
-    .top-btn.active {
-      background: #0f2a1f;
-      border-color: #00e676;
-      color: #00e676;
-    }
-
-    /* Синя кнопка Connect */
-    .connect-btn {
-      width: 100%;
-      padding: 14px;
-      border-radius: 14px;
-      border: none;
-      background: #2a7cff;
-      color: white;
-      font-size: 15px;
-      font-weight: 600;
-      margin-bottom: 16px;
-      cursor: pointer;
-    }
-
-    /* Великі кнопки */
-    .main-btns {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .main-btn {
-      width: 100%;
-      padding: 16px;
-      border-radius: 16px;
-      border: none;
-      font-size: 16px;
-      font-weight: 600;
-      color: white;
-      cursor: pointer;
-      text-align: center;
-    }
-
-    .btn-card     { background: linear-gradient(135deg, #f6d365, #fda085); color: #333; }
-    .btn-exchange { background: linear-gradient(135deg, #a18cd1, #fbc2eb); }
-    .btn-buy      { background: linear-gradient(135deg, #84fab0, #8fd3f4); color: #033; }
-    .btn-news     { background: linear-gradient(135deg, #4facfe, #00f2fe); }
-
-    /* Сторінки */
-    .page { display: none; }
-    .page.active { display: block; }
-
-    .page-content {
-      background: #16161d;
-      border: 1px solid #2a2a35;
-      border-radius: 16px;
-      padding: 20px;
-      margin-top: 10px;
-      min-height: 180px;
-    }
-
-    .back {
-      display: inline-block;
-      margin-bottom: 14px;
-      color: #00e676;
-      font-size: 14px;
-      cursor: pointer;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мини-приложение с 4 кнопками</title>
+    <style>
+        :root {
+            --primary-color: #0088cc; /* Фирменный цвет Telegram */
+            --bg-color: #f4f6f9;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+            --border-color: #e0e0e0;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            width: 100%;
+            max-width: 480px;
+            background: var(--card-bg);
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            background: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .nav-buttons {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            padding: 15px;
+            background: #f8fafc;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .nav-btn {
+            background: white;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            padding: 12px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-align: center;
+        }
+        .nav-btn:hover, .nav-btn.active {
+            background: var(--primary-color);
+            color: white;
+        }
+        .content-section {
+            padding: 20px;
+            display: none;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .content-section.active {
+            display: flex;
+        }
+        /* Стили калькулятора */
+        .calculator {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+        .calc-display {
+            grid-column: span 4;
+            background: #eee;
+            padding: 15px;
+            font-size: 24px;
+            text-align: right;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            word-break: break-all;
+        }
+        .calc-btn {
+            padding: 15px;
+            font-size: 18px;
+            background: #f0f2f5;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .calc-btn:hover { background: #e4e6eb; }
+        .calc-btn.operator { background: #e1f0fa; color: var(--primary-color); }
+        .calc-btn.equals { background: var(--primary-color); color: white; grid-column: span 2; }
+        
+        /* Элементы управления */
+        input[type="text"] {
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 16px;
+            outline: none;
+        }
+        input[type="text"]:focus {
+            border-color: var(--primary-color);
+        }
+        .action-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        .action-btn:hover {
+            opacity: 0.9;
+        }
+        .info-box {
+            background: #f8fafc;
+            border: 1px solid var(--border-color);
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 15px;
+            line-height: 1.5;
+        }
+    </style>
 </head>
 <body>
 
-  <div class="header">
-    <h1>UAT App</h1>
-    <p>Кошелёк · Курс НБУ · Telegram</p>
-  </div>
-
-  <!-- ГОЛОВНИЙ ЕКРАН -->
-  <div id="home" class="page active">
-    <div class="top-nav" id="top-nav"></div>
-
-    <button class="connect-btn" onclick="openPage('wallet')">
-      ◇ Connect Wallet
-    </button>
-
-    <div class="main-btns" id="main-btns"></div>
-  </div>
-
-  <!-- СТОРІНКИ -->
-  <div id="wallet" class="page">
-    <div class="back" onclick="openPage('home')">← Назад</div>
-    <div class="page-content">
-      <h3>Кошелёк</h3>
-      <p style="margin-top:12px;color:#aaa">Тут буде баланс і історія.</p>
+<div class="container">
+    <header>Telegram Web App</header>
+    
+    <!-- 4 Главные кнопки управления -->
+    <div class="nav-buttons">
+        <button class="nav-btn active" onclick="switchTab('weather', this)">🌤 Погода</button>
+        <button class="nav-btn" onclick="switchTab('currency', this)">💱 Курс валют</button>
+        <button class="nav-btn" onclick="switchTab('calculator', this)">🧮 Калькулятор</button>
+        <button class="nav-btn" onclick="switchTab('search', this)">🔍 Поиск в Telegram</button>
     </div>
-  </div>
 
-  <div id="rate" class="page">
-    <div class="back" onclick="openPage('home')">← Назад</div>
-    <div class="page-content">
-      <h3>Курс НБУ / TON</h3>
-      <p style="margin-top:12px;color:#aaa">Тут будуть актуальні курси.</p>
+    <!-- 1. Секция: Погода -->
+    <div id="weather" class="content-section active">
+        <h3>Реальная погода</h3>
+        <button class="action-btn" onclick="getWeather()">Обновить погоду</button>
+        <div id="weather-result" class="info-box">Нажмите кнопку для загрузки текущей погоды...</div>
     </div>
-  </div>
 
-  <div id="card" class="page">
-    <div class="back" onclick="openPage('home')">← Назад</div>
-    <div class="page-content">
-      <h3>Відкрити карту</h3>
-      <p style="margin-top:12px;color:#aaa">Тут буде відкриття карти.</p>
+    <!-- 2. Секция: Курс валют -->
+    <div id="currency" class="content-section">
+        <h3>Курсы валют (USD)</h3>
+        <button class="action-btn" onclick="getCurrency()">Загрузить курсы</button>
+        <div id="currency-result" class="info-box">Нажмите кнопку для получения актуальных курсов...</div>
     </div>
-  </div>
 
-  <div id="exchange" class="page">
-    <div class="back" onclick="openPage('home')">← Назад</div>
-    <div class="page-content">
-      <h3>Обмін</h3>
-      <p style="margin-top:12px;color:#aaa">Тут буде обмін валют / UAT.</p>
+    <!-- 3. Секция: Калькулятор -->
+    <div id="calculator" class="content-section">
+        <h3>Калькулятор</h3>
+        <div class="calculator">
+            <div id="calc-screen" class="calc-display">0</div>
+            <button class="calc-btn" onclick="clearCalc()">C</button>
+            <button class="calc-btn operator" onclick="appendCalc('/')">/</button>
+            <button class="calc-btn operator" onclick="appendCalc('*')">*</button>
+            <button class="calc-btn operator" onclick="appendCalc('-')">-</button>
+            
+            <button class="calc-btn" onclick="appendCalc('7')">7</button>
+            <button class="calc-btn" onclick="appendCalc('8')">8</button>
+            <button class="calc-btn" onclick="appendCalc('9')">9</button>
+            <button class="calc-btn operator" onclick="appendCalc('+')">+</button>
+            
+            <button class="calc-btn" onclick="appendCalc('4')">4</button>
+            <button class="calc-btn" onclick="appendCalc('5')">5</button>
+            <button class="calc-btn" onclick="appendCalc('6')">6</button>
+            <button class="calc-btn equals" onclick="calculate()">=</button>
+            
+            <button class="calc-btn" onclick="appendCalc('1')">1</button>
+            <button class="calc-btn" onclick="appendCalc('2')">2</button>
+            <button class="calc-btn" onclick="appendCalc('3')">3</button>
+            <button class="calc-btn" onclick="appendCalc('0')" style="grid-column: span 2;">0</button>
+            <button class="calc-btn" onclick="appendCalc('.')">.</button>
+        </div>
     </div>
-  </div>
 
-  <div id="buy" class="page">
-    <div class="back" onclick="openPage('home')">← Назад</div>
-    <div class="page-content">
-      <h3>Купити UAT</h3>
-      <p style="margin-top:12px;color:#aaa">Тут буде покупка UAT.</p>
+    <!-- 4. Секция: Поиск строго в Telegram -->
+    <div id="search" class="content-section">
+        <h3>Поиск в Telegram</h3>
+        <p style="font-size: 13px; color: #666; margin: 0;">Ищет информацию исключительно по публичным материалам и каналам Telegram.</p>
+        <input type="text" id="tg-search-input" placeholder="Что найти в Telegram?">
+        <button class="action-btn" onclick="searchTelegram()">Найти</button>
     </div>
-  </div>
+</div>
 
-  <div id="news" class="page">
-    <div class="back" onclick="openPage('home')">← Назад</div>
-    <div class="page-content">
-      <h3>Оголошення</h3>
-      <p style="margin-top:12px;color:#aaa">Тут будуть новини та оголошення.</p>
-    </div>
-  </div>
-
-  <script>
-    // ===== Telegram =====
-    const tg = window.Telegram?.WebApp;
-    if (tg) {
-      tg.ready();
-      tg.expand();
+<script>
+    // Переключение вкладок
+    function switchTab(tabId, btn) {
+        document.querySelectorAll('.content-section').forEach(sec => sec.classList.remove('active'));
+        document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+        
+        document.getElementById(tabId).classList.add('active');
+        btn.classList.add('active');
     }
 
-    // ===== Дані кнопок (тут все налаштовується) =====
-    const topButtons = [
-      { id: 'wallet', title: '💳 Кошелёк', active: true },
-      { id: 'telegram', title: '📱 Telegram' },
-      { id: 'ton', title: 'TON' },
-      { id: 'rate', title: 'Курс' }
-    ];
-
-    const mainButtons = [
-      { id: 'card',     title: '💳 Відкрити карту', className: 'btn-card' },
-      { id: 'exchange', title: '↔️ Обмін',          className: 'btn-exchange' },
-      { id: 'buy',      title: '💰 Купити UAT',     className: 'btn-buy' },
-      { id: 'news',     title: '📋 Оголошення',     className: 'btn-news' }
-    ];
-
-    // ===== Малюємо кнопки =====
-    function renderButtons() {
-      // Верхні кнопки
-      document.getElementById('top-nav').innerHTML = topButtons.map(btn => `
-        <button class="top-btn \( {btn.active ? 'active' : ''}" onclick="openPage(' \){btn.id}')">
-          ${btn.title}
-        </button>
-      `).join('');
-
-      // Великі кнопки
-      document.getElementById('main-btns').innerHTML = mainButtons.map(btn => `
-        <button class="main-btn \( {btn.className}" onclick="openPage(' \){btn.id}')">
-          ${btn.title}
-        </button>
-      `).join('');
+    // 1. Погода (использует Open-Meteo API без ключей и геолокацию пользователя)
+    function getWeather() {
+        const resBox = document.getElementById('weather-result');
+        resBox.innerHTML = "Определение координат и загрузка погоды...";
+        
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                position => fetchWeatherCoords(position.coords.latitude, position.coords.longitude),
+                () => fetchWeatherCoords(50.4501, 30.5234) // Резервные координаты (Киев)
+            );
+        } else {
+            fetchWeatherCoords(50.4501, 30.5234);
+        }
     }
 
-    // ===== Навігація =====
-    function openPage(id) {
-      // Спеціальна обробка для Telegram
-      if (id === 'telegram') {
-        if (tg) tg.openTelegramLink('https://t.me/');
-        return;
-      }
-
-      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-      const page = document.getElementById(id);
-      if (page) page.classList.add('active');
+    function fetchWeatherCoords(lat, lon) {
+        fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true`)
+            .then(res => res.json())
+            .then(data => {
+                const w = data.current_weather;
+                document.getElementById('weather-result').innerHTML = `
+                    <strong>Широта/Долгота:</strong> ${lat.toFixed(2)}, ${lon.toFixed(2)}<br>
+                    <strong>Температура:</strong> ${w.temperature} °C<br>
+                    <strong>Скорость ветра:</strong> ${w.windspeed} км/ч<br>
+                    <strong>Статус:</strong> Успешно загружено
+                `;
+            })
+            .catch(() => {
+                document.getElementById('weather-result').innerHTML = "Не удалось загрузить данные о погоде.";
+            });
     }
 
-    // Запуск
-    renderButtons();
-  </script>
+    // 2. Курс валют (использует Frankfurter API)
+    function getCurrency() {
+        const resBox = document.getElementById('currency-result');
+        resBox.innerHTML = "Загрузка курсов валют...";
+        
+        fetch('https://api.frankfurter.app/latest?from=USD&to=EUR,UAH')
+            .then(res => res.json())
+            .then(data => {
+                resBox.innerHTML = `
+                    <strong>Базовая валюта:</strong> 1 USD<br>
+                    <strong>Евро (EUR):</strong> ${data.rates.EUR}<br>
+                    <strong>Гривна (UAH):</strong> ${data.rates.UAH}<br>
+                    <small>Актуально на: ${data.date}</small>
+                `;
+            })
+            .catch(() => {
+                resBox.innerHTML = "Не удалось загрузить курсы валют.";
+            });
+    }
+
+    // 3. Логика калькулятора
+    let calcScreen = document.getElementById('calc-screen');
+    let currentInput = "0";
+
+    function appendCalc(val) {
+        if (currentInput === "0" && val !== '.') {
+            currentInput = val;
+        } else {
+            currentInput += val;
+        }
+        calcScreen.innerText = currentInput;
+    }
+
+    function clearCalc() {
+        currentInput = "0";
+        calcScreen.innerText = currentInput;
+    }
+
+    function calculate() {
+        try {
+            let result = eval(currentInput.replace(/[^0-9+\-*/.]/g, ''));
+            currentInput = String(result);
+            calcScreen.innerText = currentInput;
+        } catch {
+            calcScreen.innerText = "Ошибка";
+            currentInput = "0";
+        }
+    }
+
+    // 4. Поиск строго в Telegram с помощью оператора site:t.me
+    function searchTelegram() {
+        const query = document.getElementById('tg-search-input').value.trim();
+        if (!query) {
+            alert("Пожалуйста, введите поисковый запрос!");
+            return;
+        }
+        const searchUrl = `https://www.google.com/search?q=site:t.me+${encodeURIComponent(query)}`;
+        window.open(searchUrl, '_blank');
+    }
+</script>
+
 </body>
 </html>
