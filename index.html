@@ -2,10 +2,18 @@
 <html lang="uk">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <title>UAT App</title>
+  <!-- Подключение Telegram WebApp SDK -->
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * { 
+      margin: 0; 
+      padding: 0; 
+      box-sizing: border-box; 
+      -webkit-tap-highlight-color: transparent; 
+      touch-action: manipulation;
+    }
     body {
       min-height: 100vh;
       background: #0b0b0f;
@@ -48,7 +56,9 @@
       display: block; width: 100%; padding: 15px; border-radius: 16px;
       border: none; font-size: 15px; font-weight: 600;
       text-align: center; text-decoration: none; cursor: pointer;
+      font-family: inherit;
     }
+    .btn:active { opacity: 0.8; transform: scale(0.99); }
     .btn-card { background: linear-gradient(135deg, #fdcb6e, #e17055); color: #2d3436; }
     .btn-swap { background: linear-gradient(135deg, #6c5ce7, #a29bfe); color: white; }
     .btn-buy { background: linear-gradient(135deg, #00b894, #55efc4); color: #003d2e; }
@@ -107,9 +117,9 @@
       margin-bottom: 18px; cursor: pointer;
     }
     .job-btn {
-      display: block; background: #121218; border: 1px solid #2a2a35;
+      display: block; width: 100%; text-align: left; background: #121218; border: 1px solid #2a2a35;
       border-radius: 14px; padding: 14px 16px; color: #fff;
-      text-decoration: none; font-size: 14px; margin-bottom: 8px;
+      font-size: 14px; margin-bottom: 8px; cursor: pointer;
     }
     .job-btn span { display: block; color: #8b8b9e; font-size: 12px; margin-top: 2px; }
 
@@ -138,22 +148,22 @@
   </div>
 
   <div class="nav">
-    <div class="nav-btn active" id="nav-wallet" onclick="showPage('wallet')">🏠 Головна</div>
-    <div class="nav-btn" id="nav-jobs" onclick="showPage('jobs')">📱 Telegram</div>
+    <button class="nav-btn active" id="nav-wallet" onclick="showPage('wallet')">🏠 Головна</button>
+    <button class="nav-btn" id="nav-jobs" onclick="showPage('jobs')">📱 Telegram</button>
   </div>
 
   <div class="page active" id="page-wallet">
     <div class="network-tabs">
-      <div class="tab active" id="tab-ton" onclick="switchTab('ton')">TON</div>
-      <div class="tab" id="tab-rates" onclick="switchTab('rates')">Курс</div>
+      <button class="tab active" id="tab-ton" onclick="switchTab('ton')">TON</button>
+      <button class="tab" id="tab-rates" onclick="switchTab('rates')">Курс</button>
     </div>
 
     <div id="ton-section">
       <div class="buttons">
-        <a class="btn btn-card" href="https://krak.app/@Goldstar" target="_blank" rel="noopener noreferrer">💳 Відкрити карту</a>
-        <div class="btn btn-swap" onclick="showPage('dp')">🏢 ДП Документ</div>
-        <a class="btn btn-buy" href="https://www.flixbus.ua" target="_blank" rel="noopener noreferrer">🚌 Flixbus</a>
-        <a class="btn btn-ads" href="https://t.me/obyavIeni" target="_blank" rel="noopener noreferrer">📋 Оголошення</a>
+        <button class="btn btn-card" onclick="openUrl('https://krak.app/@Goldstar')">💳 Відкрити карту</button>
+        <button class="btn btn-swap" onclick="showPage('dp')">🏢 ДП Документ</button>
+        <button class="btn btn-buy" onclick="openUrl('https://www.flixbus.ua')">🚌 Flixbus</button>
+        <button class="btn btn-ads" onclick="openUrl('https://t.me/obyavIeni')">📋 Оголошення</button>
       </div>
     </div>
 
@@ -198,11 +208,11 @@
 
   <!-- Страница ДП Документ -->
   <div class="page" id="page-dp">
-    <div class="back-btn" onclick="showPage('wallet')">← Назад на головну</div>
+    <button class="back-btn" onclick="showPage('wallet')">← Назад на головну</button>
     <div style="font-size:20px;margin-bottom:6px;font-weight:700;text-align:center;">🏢 ДП «Документ»</div>
     <p style="color:#8b8b9e;font-size:13px;text-align:center;margin-bottom:16px;">Паспортний сервіс (Адреси центрів)</p>
 
-    <a class="btn btn-buy" href="https://pasport.org.ua/" target="_blank" rel="noopener noreferrer" style="margin-bottom:16px;">📅 Запис в електронну чергу</a>
+    <button class="btn btn-buy" onclick="openUrl('https://pasport.org.ua/')" style="margin-bottom:16px;">📅 Запис в електронну чергу</button>
 
     <div class="dp-country">
       <div class="dp-country-title">🇵🇱 Польща</div>
@@ -304,83 +314,106 @@
   <div class="page" id="page-jobs">
     <div id="countries-list">
       <div class="countries-grid">
-        <div class="country-btn" onclick="openCountry('poland')"><span class="flag">🇵🇱</span>Польща</div>
-        <div class="country-btn" onclick="openCountry('germany')"><span class="flag">🇩🇪</span>Німеччина</div>
-        <div class="country-btn" onclick="openCountry('czech')"><span class="flag">🇨🇿</span>Чехія</div>
-        <div class="country-btn" onclick="openCountry('slovakia')"><span class="flag">🇸🇰</span>Словаччина</div>
-        <div class="country-btn" onclick="openCountry('italy')"><span class="flag">🇮🇹</span>Італія</div>
-        <div class="country-btn" onclick="openCountry('hungary')"><span class="flag">🇭🇺</span>Угорщина</div>
-        <div class="country-btn" onclick="openCountry('bulgaria')"><span class="flag">🇧🇬</span>Болгарія</div>
-        <div class="country-btn" onclick="openCountry('general')"><span class="flag">🌍</span>Загальні</div>
+        <button class="country-btn" onclick="openCountry('poland')"><span class="flag">🇵🇱</span>Польща</button>
+        <button class="country-btn" onclick="openCountry('germany')"><span class="flag">🇩🇪</span>Німеччина</button>
+        <button class="country-btn" onclick="openCountry('czech')"><span class="flag">🇨🇿</span>Чехія</button>
+        <button class="country-btn" onclick="openCountry('slovakia')"><span class="flag">🇸🇰</span>Словаччина</button>
+        <button class="country-btn" onclick="openCountry('italy')"><span class="flag">🇮🇹</span>Італія</button>
+        <button class="country-btn" onclick="openCountry('hungary')"><span class="flag">🇭🇺</span>Угорщина</button>
+        <button class="country-btn" onclick="openCountry('bulgaria')"><span class="flag">🇧🇬</span>Болгарія</button>
+        <button class="country-btn" onclick="openCountry('general')"><span class="flag">🌍</span>Загальні</button>
       </div>
     </div>
 
     <div class="country-detail" id="country-poland">
-      <div class="back-btn" onclick="backToCountries()">← Назад</div>
+      <button class="back-btn" onclick="backToCountries()">← Назад</button>
       <div style="font-size:18px;margin-bottom:14px;font-weight:700">🇵🇱 Польща</div>
-      <a class="job-btn" href="https://t.me/pracavpolsku" target="_blank" rel="noopener noreferrer">@pracavpolsku<span>Робота в Польщі</span></a>
-      <a class="job-btn" href="https://t.me/workinpolandi" target="_blank" rel="noopener noreferrer">@workinpolandi<span>Work in Poland</span></a>
-      <a class="job-btn" href="https://t.me/helpukrainiansjooble" target="_blank" rel="noopener noreferrer">@helpukrainiansjooble<span>Jooble</span></a>
+      <button class="job-btn" onclick="openUrl('https://t.me/pracavpolsku')">@pracavpolsku<span>Робота в Польщі</span></button>
+      <button class="job-btn" onclick="openUrl('https://t.me/workinpolandi')">@workinpolandi<span>Work in Poland</span></button>
+      <button class="job-btn" onclick="openUrl('https://t.me/helpukrainiansjooble')">@helpukrainiansjooble<span>Jooble</span></button>
     </div>
     <div class="country-detail" id="country-germany">
-      <div class="back-btn" onclick="backToCountries()">← Назад</div>
+      <button class="back-btn" onclick="backToCountries()">← Назад</button>
       <div style="font-size:18px;margin-bottom:14px;font-weight:700">🇩🇪 Німеччина</div>
-      <a class="job-btn" href="https://t.me/helpukrainiansjooble" target="_blank" rel="noopener noreferrer">@helpukrainiansjooble<span>Jooble</span></a>
-      <a class="job-btn" href="https://t.me/jobforukrainians" target="_blank" rel="noopener noreferrer">@jobforukrainians<span>JOB for Ukrainians</span></a>
-      <a class="job-btn" href="https://t.me/outjob" target="_blank" rel="noopener noreferrer">@outjob<span>Робота за кордоном</span></a>
+      <button class="job-btn" onclick="openUrl('https://t.me/helpukrainiansjooble')">@helpukrainiansjooble<span>Jooble</span></button>
+      <button class="job-btn" onclick="openUrl('https://t.me/jobforukrainians')">@jobforukrainians<span>JOB for Ukrainians</span></button>
+      <button class="job-btn" onclick="openUrl('https://t.me/outjob')">@outjob<span>Робота за кордоном</span></button>
     </div>
     <div class="country-detail" id="country-czech">
-      <div class="back-btn" onclick="backToCountries()">← Назад</div>
+      <button class="back-btn" onclick="backToCountries()">← Назад</button>
       <div style="font-size:18px;margin-bottom:14px;font-weight:700">🇨🇿 Чехія</div>
-      <a class="job-btn" href="https://t.me/dobra_prace" target="_blank" rel="noopener noreferrer">@dobra_prace<span>Добра праця</span></a>
-      <a class="job-btn" href="https://t.me/helpukrainiansjooble" target="_blank" rel="noopener noreferrer">@helpukrainiansjooble<span>Jooble</span></a>
-      <a class="job-btn" href="https://t.me/europeservicepl" target="_blank" rel="noopener noreferrer">@europeservicepl<span>Europe Service</span></a>
+      <button class="job-btn" onclick="openUrl('https://t.me/dobra_prace')">@dobra_prace<span>Добра праця</span></button>
+      <button class="job-btn" onclick="openUrl('https://t.me/helpukrainiansjooble')">@helpukrainiansjooble<span>Jooble</span></button>
+      <button class="job-btn" onclick="openUrl('https://t.me/europeservicepl')">@europeservicepl<span>Europe Service</span></button>
     </div>
     <div class="country-detail" id="country-slovakia">
-      <div class="back-btn" onclick="backToCountries()">← Назад</div>
+      <button class="back-btn" onclick="backToCountries()">← Назад</button>
       <div style="font-size:18px;margin-bottom:14px;font-weight:700">🇸🇰 Словаччина</div>
-      <a class="job-btn" href="https://t.me/helpukrainiansjooble" target="_blank" rel="noopener noreferrer">@helpukrainiansjooble<span>Jooble</span></a>
-      <a class="job-btn" href="https://t.me/ukrajincivsk" target="_blank" rel="noopener noreferrer">@ukrajincivsk<span>Українці в СК</span></a>
-      <a class="job-btn" href="https://t.me/slovachyna_pidtrymka" target="_blank" rel="noopener noreferrer">@slovachyna_pidtrymka<span>Підтримка</span></a>
+      <button class="job-btn" onclick="openUrl('https://t.me/helpukrainiansjooble')">@helpukrainiansjooble<span>Jooble</span></button>
+      <button class="job-btn" onclick="openUrl('https://t.me/ukrajincivsk')">@ukrajincivsk<span>Українці в СК</span></button>
+      <button class="job-btn" onclick="openUrl('https://t.me/slovachyna_pidtrymka')">@slovachyna_pidtrymka<span>Підтримка</span></button>
     </div>
     <div class="country-detail" id="country-italy">
-      <div class="back-btn" onclick="backToCountries()">← Назад</div>
+      <button class="back-btn" onclick="backToCountries()">← Назад</button>
       <div style="font-size:18px;margin-bottom:14px;font-weight:700">🇮🇹 Італія</div>
-      <a class="job-btn" href="https://t.me/dodomu_italia_ucraina" target="_blank" rel="noopener noreferrer">@dodomu_italia_ucraina<span>Додому Італія</span></a>
-      <a class="job-btn" href="https://t.me/italia_info" target="_blank" rel="noopener noreferrer">@italia_info<span>Italia Info</span></a>
-      <a class="job-btn" href="https://t.me/helpukrainiansjooble" target="_blank" rel="noopener noreferrer">@helpukrainiansjooble<span>Jooble</span></a>
+      <button class="job-btn" onclick="openUrl('https://t.me/dodomu_italia_ucraina')">@dodomu_italia_ucraina<span>Додому Італія</span></button>
+      <button class="job-btn" onclick="openUrl('https://t.me/italia_info')">@italia_info<span>Italia Info</span></button>
+      <button class="job-btn" onclick="openUrl('https://t.me/helpukrainiansjooble')">@helpukrainiansjooble<span>Jooble</span></button>
     </div>
     <div class="country-detail" id="country-hungary">
-      <div class="back-btn" onclick="backToCountries()">← Назад</div>
+      <button class="back-btn" onclick="backToCountries()">← Назад</button>
       <div style="font-size:18px;margin-bottom:14px;font-weight:700">🇭🇺 Угорщина</div>
-      <a class="job-btn" href="https://t.me/hungary_ukr" target="_blank" rel="noopener noreferrer">@hungary_ukr<span>Українці в Угорщині</span></a>
-      <a class="job-btn" href="https://t.me/dopomoga_hungary" target="_blank" rel="noopener noreferrer">@dopomoga_hungary<span>Допомога</span></a>
-      <a class="job-btn" href="https://t.me/helpukrainiansjooble" target="_blank" rel="noopener noreferrer">@helpukrainiansjooble<span>Jooble</span></a>
+      <button class="job-btn" onclick="openUrl('https://t.me/hungary_ukr')">@hungary_ukr<span>Українці в Угорщині</span></button>
+      <button class="job-btn" onclick="openUrl('https://t.me/dopomoga_hungary')">@dopomoga_hungary<span>Допомога</span></button>
+      <button class="job-btn" onclick="openUrl('https://t.me/helpukrainiansjooble')">@helpukrainiansjooble<span>Jooble</span></button>
     </div>
     <div class="country-detail" id="country-bulgaria">
-      <div class="back-btn" onclick="backToCountries()">← Назад</div>
+      <button class="back-btn" onclick="backToCountries()">← Назад</button>
       <div style="font-size:18px;margin-bottom:14px;font-weight:700">🇧🇬 Болгарія</div>
-      <a class="job-btn" href="https://t.me/helpukrainiansjooble" target="_blank" rel="noopener noreferrer">@helpukrainiansjooble<span>Jooble</span></a>
+      <button class="job-btn" onclick="openUrl('https://t.me/helpukrainiansjooble')">@helpukrainiansjooble<span>Jooble</span></button>
     </div>
     <div class="country-detail" id="country-general">
-      <div class="back-btn" onclick="backToCountries()">← Назад</div>
+      <button class="back-btn" onclick="backToCountries()">← Назад</button>
       <div style="font-size:18px;margin-bottom:14px;font-weight:700">🌍 Загальні</div>
-      <a class="job-btn" href="https://t.me/helpukrainiansjooble" target="_blank" rel="noopener noreferrer">@helpukrainiansjooble<span>Jooble</span></a>
-      <a class="job-btn" href="https://t.me/outjob" target="_blank" rel="noopener noreferrer">@outjob<span>Робота за кордоном</span></a>
-      <a class="job-btn" href="https://t.me/jobforukrainians" target="_blank" rel="noopener noreferrer">@jobforukrainians<span>JOB for Ukrainians</span></a>
-      <a class="job-btn" href="https://t.me/europeservicepl" target="_blank" rel="noopener noreferrer">@europeservicepl<span>Europe Service</span></a>
+      <button class="job-btn" onclick="openUrl('https://t.me/helpukrainiansjooble')">@helpukrainiansjooble<span>Jooble</span></button>
+      <button class="job-btn" onclick="openUrl('https://t.me/outjob')">@outjob<span>Робота за кордоном</span></button>
+      <button class="job-btn" onclick="openUrl('https://t.me/jobforukrainians')">@jobforukrainians<span>JOB for Ukrainians</span></button>
+      <button class="job-btn" onclick="openUrl('https://t.me/europeservicepl')">@europeservicepl<span>Europe Service</span></button>
     </div>
   </div>
 
   <script>
-    const MAIN_CURRENCIES = ['USD', 'EUR', 'PLN', 'GBP', 'CHF', 'CZK'];
-    let ratesMap = { UAH: 1 };
-    let ratesTimer = null;
-
+    // Безопасная инициализация Telegram WebApp
     document.addEventListener('DOMContentLoaded', () => {
+      if (window.Telegram && window.Telegram.WebApp) {
+        window.Telegram.WebApp.ready();
+        window.Telegram.WebApp.expand();
+      }
       loadRates();
       ratesTimer = setInterval(loadRates, 5 * 60 * 1000);
     });
+
+    // Функция универсального перенаправления
+    function openUrl(url) {
+      const tg = window.Telegram?.WebApp;
+      if (url.startsWith('https://t.me/')) {
+        if (tg && tg.openTelegramLink) {
+          tg.openTelegramLink(url);
+        } else {
+          window.open(url, '_blank');
+        }
+      } else {
+        if (tg && tg.openLink) {
+          tg.openLink(url);
+        } else {
+          window.open(url, '_blank');
+        }
+      }
+    }
+
+    const MAIN_CURRENCIES = ['USD', 'EUR', 'PLN', 'GBP', 'CHF', 'CZK'];
+    let ratesMap = { UAH: 1 };
+    let ratesTimer = null;
 
     function showPage(page) {
       document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
@@ -398,6 +431,9 @@
     }
 
     function switchTab(tab) {
+      document.getElementById('tab-ton').classList.toggle('active', tab === 'ton');
+      document.getElementById('tab-rates').classList.toggle('active', tab === 'rates');
+      document.getElementById('t     function switchTab(tab) {
       document.getElementById('tab-ton').classList.toggle('active', tab === 'ton');
       document.getElementById('tab-rates').classList.toggle('active', tab === 'rates');
       document.getElementById('ton-section').style.display = tab === 'ton' ? 'block' : 'none';
@@ -418,4 +454,60 @@
         ratesMap = { UAH: 1 };
         const dataMap = {};
 
-        data.for
+        data.forEach(item => {
+          ratesMap[item.cc] = item.rate;
+          dataMap[item.cc] = item;
+        });
+
+        let html = '';
+        MAIN_CURRENCIES.forEach(cc => {
+          const item = dataMap[cc];
+          if (!item) return;
+          html += `<div class="rate-row">
+            <div>
+              <div class="rate-code">${item.cc}</div>
+              <div class="rate-name">${item.txt}</div>
+            </div>
+            <div class="rate-value">${item.rate.toFixed(2)} ₴</div>
+          </div>`;
+        });
+
+        list.innerHTML = html || 'Немає даних';
+        const now = new Date();
+        updated.textContent = 'оновлено ' + now.toLocaleTimeString('uk-UA', { hour: '2-digit', minute: '2-digit' });
+        convert();
+      } catch (e) {
+        list.innerHTML = 'Помилка завантаження курсу НБУ';
+        updated.textContent = 'помилка';
+      }
+    }
+
+    function convert() {
+      const amount = parseFloat(document.getElementById('conv-amount').value) || 0;
+      const from = document.getElementById('conv-from').value;
+      const to = document.getElementById('conv-to').value;
+      const fromRate = ratesMap[from];
+      const toRate = ratesMap[to];
+      const el = document.getElementById('conv-result');
+
+      if (!fromRate || !toRate) {
+        el.textContent = '—';
+        return;
+      }
+      const result = (amount * fromRate) / toRate;
+      el.textContent = result.toLocaleString('uk-UA', { maximumFractionDigits: 2 }) + ' ' + to;
+    }
+
+    function openCountry(id) {
+      document.getElementById('countries-list').style.display = 'none';
+      document.querySelectorAll('.country-detail').forEach(el => el.classList.remove('active'));
+      document.getElementById('country-' + id).classList.add('active');
+    }
+
+    function backToCountries() {
+      document.getElementById('countries-list').style.display = 'block';
+      document.querySelectorAll('.country-detail').forEach(el => el.classList.remove('active'));
+    }
+  </script>
+</body>
+</html>
