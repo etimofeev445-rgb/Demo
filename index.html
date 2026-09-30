@@ -49,7 +49,9 @@
       display: block; width: 100%; padding: 15px; border-radius: 16px;
       border: none; font-size: 15px; font-weight: 600;
       text-align: center; text-decoration: none; cursor: pointer;
+      color: inherit; font-family: inherit;
     }
+    button.btn { -webkit-appearance: none; appearance: none; }
     .btn-card { background: linear-gradient(135deg, #fdcb6e, #e17055); color: #2d3436; }
     .btn-swap { background: linear-gradient(135deg, #6c5ce7, #a29bfe); color: white; }
     .btn-buy { background: linear-gradient(135deg, #00b894, #55efc4); color: #003d2e; }
@@ -142,47 +144,16 @@
 
   <div class="page active" id="page-wallet">
     <div class="network-tabs">
-      <div class="tab active" id="tab-ton" onclick="switchTab('ton')">🏦 Банк</div>
+      <div class="tab active" id="tab-ton" onclick="switchTab('ton')">Меню</div>
       <div class="tab" id="tab-rates" onclick="switchTab('rates')">Курс</div>
     </div>
 
     <div id="ton-section">
-      <div class="buttons" id="main-buttons">
-        <button class="btn btn-swap" onclick="showBanks('ua')">🇺🇦 Банки України</button>
-        <button class="btn btn-swap" onclick="showBanks('eu')">🇪🇺 Банки Європи</button>
+      <div class="buttons">
         <a class="btn btn-card" href="https://krak.app/@Goldstar" target="_blank">💳 Відкрити карту</a>
         <button class="btn btn-swap" onclick="showPage('dp')">📄 ДП документ</button>
         <a class="btn btn-buy" href="https://www.flixbus.ua" target="_blank">🚌 Flixbus</a>
         <a class="btn btn-ads" href="https://t.me/obyavIeni" target="_blank">📋 Оголошення</a>
-      </div>
-
-      <div id="banks-ua" style="display:none">
-        <div class="back-btn" onclick="hideBanks()">← Назад</div>
-        <div style="font-size:16px;font-weight:700;margin-bottom:14px">🇺🇦 Банки України</div>
-        <a class="job-btn" href="https://www.privatbank.ua" target="_blank">ПриватБанк<span>privatbank.ua</span></a>
-        <a class="job-btn" href="https://www.monobank.ua" target="_blank">monobank<span>monobank.ua</span></a>
-        <a class="job-btn" href="https://www.oschadbank.ua" target="_blank">Ощадбанк<span>oschadbank.ua</span></a>
-        <a class="job-btn" href="https://www.pumb.ua" target="_blank">ПУМБ<span>pumb.ua</span></a>
-        <a class="job-btn" href="https://www.ukrsibbank.com" target="_blank">УкрСиббанк<span>ukrsibbank.com</span></a>
-        <a class="job-btn" href="https://www.raiffeisen.ua" target="_blank">Райффайзен Банк<span>raiffeisen.ua</span></a>
-        <a class="job-btn" href="https://www.otpbank.com.ua" target="_blank">OTP Bank<span>otpbank.com.ua</span></a>
-        <a class="job-btn" href="https://bank.gov.ua" target="_blank">НБУ<span>bank.gov.ua</span></a>
-      </div>
-
-      <div id="banks-eu" style="display:none">
-        <div class="back-btn" onclick="hideBanks()">← Назад</div>
-        <div style="font-size:16px;font-weight:700;margin-bottom:14px">🇪🇺 Банки Європи</div>
-        <a class="job-btn" href="https://www.revolut.com" target="_blank">Revolut<span>revolut.com</span></a>
-        <a class="job-btn" href="https://n26.com" target="_blank">N26<span>n26.com</span></a>
-        <a class="job-btn" href="https://wise.com" target="_blank">Wise<span>wise.com</span></a>
-        <a class="job-btn" href="https://www.pkobp.pl" target="_blank">PKO Bank Polski<span>pkobp.pl</span></a>
-        <a class="job-btn" href="https://www.mbank.pl" target="_blank">mBank<span>mbank.pl</span></a>
-        <a class="job-btn" href="https://www.ing.pl" target="_blank">ING Bank Śląski<span>ing.pl</span></a>
-        <a class="job-btn" href="https://www.santander.pl" target="_blank">Santander Bank Polska<span>santander.pl</span></a>
-        <a class="job-btn" href="https://www.deutsche-bank.de" target="_blank">Deutsche Bank<span>deutsche-bank.de</span></a>
-        <a class="job-btn" href="https://www.commerzbank.de" target="_blank">Commerzbank<span>commerzbank.de</span></a>
-        <a class="job-btn" href="https://www.csob.cz" target="_blank">ČSOB<span>csob.cz</span></a>
-        <a class="job-btn" href="https://www.slsp.sk" target="_blank">Slovenská sporiteľňa<span>slsp.sk</span></a>
       </div>
     </div>
 
@@ -362,4 +333,58 @@
 
     <div class="country-detail" id="dp-czech">
       <div class="back-btn" onclick="backToDpCountries()">← Назад</div>
-      <div style="font-size:18px;margin-bottom:14px;font-
+      <div style="font-size:18px;margin-bottom:14px;font-weight:700">🇨🇿 Чехія</div>
+      <div class="addr-box">
+        <div class="addr-city">Прага</div>
+        <div class="addr-text">Michelská 1552/58, Praha</div>
+        <a class="addr-link" href="https://pasport.org.ua" target="_blank">Запис →</a>
+      </div>
+    </div>
+
+    <div class="country-detail" id="dp-slovakia">
+      <div class="back-btn" onclick="backToDpCountries()">← Назад</div>
+      <div style="font-size:18px;margin-bottom:14px;font-weight:700">🇸🇰 Словаччина</div>
+      <div class="addr-box">
+        <div class="addr-city">Братислава</div>
+        <div class="addr-text">Mlynské nivy 5A, 821 09 Bratislava (ТЦ Nivy, -1 поверх)</div>
+        <a class="addr-link" href="https://pasport.org.ua" target="_blank">Запис →</a>
+      </div>
+    </div>
+
+    <div class="country-detail" id="dp-spain">
+      <div class="back-btn" onclick="backToDpCountries()">← Назад</div>
+      <div style="font-size:18px;margin-bottom:14px;font-weight:700">🇪🇸 Іспанія</div>
+      <div class="addr-box">
+        <div class="addr-city">Мадрид</div>
+        <div class="addr-text">Blvr. de José Prat 35 / C. Adolfo Bioy Casares 2, район Vicálvaro</div>
+        <a class="addr-link" href="https://pasport.org.ua" target="_blank">Запис →</a>
+      </div>
+    </div>
+
+    <div class="country-detail" id="dp-italy">
+      <div class="back-btn" onclick="backToDpCountries()">← Назад</div>
+      <div style="font-size:18px;margin-bottom:14px;font-weight:700">🇮🇹 Італія</div>
+      <div class="addr-box">
+        <div class="addr-city">Мілан (Rozzano)</div>
+        <div class="addr-text">Via Eugenio Curiel 25, Rozzano</div>
+        <a class="addr-link" href="https://pasport.org.ua" target="_blank">Запис →</a>
+      </div>
+    </div>
+
+    <div class="country-detail" id="dp-uk">
+      <div class="back-btn" onclick="backToDpCountries()">← Назад</div>
+      <div style="font-size:18px;margin-bottom:14px;font-weight:700">🇬🇧 Велика Британія</div>
+      <div class="addr-box">
+        <div class="addr-city">Лондон</div>
+        <div class="addr-text">The Foundry, 8-15 Dereham Place</div>
+        <a class="addr-link" href="https://pasport.org.ua" target="_blank">Запис →</a>
+      </div>
+    </div>
+
+    <div class="country-detail" id="dp-turkey">
+      <div class="back-btn" onclick="backToDpCountries()">← Назад</div>
+      <div style="font-size:18px;margin-bottom:14px;font-weight:700">🇹🇷 Туреччина</div>
+      <div class="addr-box">
+        <div class="addr-city">Стамбул</div>
+        <div class="addr-text">Londra Asfaltı E-5, Airport AVM, Bakırköy/İstanbul</div>
+        <a class="addr-link" href="https://pasport.org.ua" target="_blank">Запис
