@@ -54,8 +54,6 @@
     .btn-buy { background: linear-gradient(135deg, #00b894, #55efc4); color: #003d2e; }
     .btn-ads { background: linear-gradient(135deg, #0088cc, #00aaff); color: white; }
 
-    /* card menu styles removed — only one card left */
-
     #rates-section { display: none; }
     .rates-box {
       background: #121218; border: 1px solid #2a2a35;
@@ -120,11 +118,11 @@
 
   <div class="header">
     <h1>UAT App</h1>
-    <p>Главная · Курс НБУ · Telegram</p>
+    <p>Головна · Курс НБУ · Telegram</p>
   </div>
 
   <div class="nav">
-    <div class="nav-btn active" id="nav-wallet" onclick="showPage('wallet')">🏠 Главная</div>
+    <div class="nav-btn active" id="nav-wallet" onclick="showPage('wallet')">🏠 Головна</div>
     <div class="nav-btn" id="nav-jobs" onclick="showPage('jobs')">📱 Telegram</div>
   </div>
 
@@ -136,10 +134,10 @@
 
     <div id="ton-section">
       <div class="buttons">
-        <a class="btn btn-card" href="https://krak.app/@Goldstar" target="_blank">💳 Відкрити карту</a>
-        <a class="btn btn-swap" href="https://app.ston.fi/" target="_blank">🔄 Обмін</a>
-        <a class="btn btn-buy" href="https://www.flixbus.ua" target="_blank">🚌 Flixbus</a>
-        <a class="btn btn-ads" href="https://t.me/obyavIeni" target="_blank">📋 Оголошення</a>
+        <a class="btn btn-card" href="https://krak.app/@Goldstar" target="_blank" rel="noopener noreferrer">💳 Відкрити карту</a>
+        <a class="btn btn-swap" href="https://app.ston.fi/" target="_blank" rel="noopener noreferrer">🔄 Обмін</a>
+        <a class="btn btn-buy" href="https://www.flixbus.ua" target="_blank" rel="noopener noreferrer">🚌 Flixbus</a>
+        <a class="btn btn-ads" href="https://t.me/obyavIeni" target="_blank" rel="noopener noreferrer">📋 Оголошення</a>
       </div>
     </div>
 
@@ -155,7 +153,7 @@
       <div class="converter">
         <h3>Конвертер</h3>
         <div class="conv-row">
-          <input type="number" id="conv-amount" value="100" min="0" step="any" oninput="convert()">
+          <input type="number" id="conv-amount" value="100" min="0" step="any" inputmode="decimal" oninput="convert()">
           <select id="conv-from" onchange="convert()">
             <option value="UAH">UAH</option>
             <option value="USD">USD</option>
@@ -199,68 +197,73 @@
     <div class="country-detail" id="country-poland">
       <div class="back-btn" onclick="backToCountries()">← Назад</div>
       <div style="font-size:18px;margin-bottom:14px;font-weight:700">🇵🇱 Польща</div>
-      <a class="job-btn" href="https://t.me/pracavpolsku" target="_blank">@pracavpolsku<span>Робота в Польщі</span></a>
-      <a class="job-btn" href="https://t.me/workinpolandi" target="_blank">@workinpolandi<span>Work in Poland</span></a>
-      <a class="job-btn" href="https://t.me/helpukrainiansjooble" target="_blank">@helpukrainiansjooble<span>Jooble</span></a>
+      <a class="job-btn" href="https://t.me/pracavpolsku" target="_blank" rel="noopener noreferrer">@pracavpolsku<span>Робота в Польщі</span></a>
+      <a class="job-btn" href="https://t.me/workinpolandi" target="_blank" rel="noopener noreferrer">@workinpolandi<span>Work in Poland</span></a>
+      <a class="job-btn" href="https://t.me/helpukrainiansjooble" target="_blank" rel="noopener noreferrer">@helpukrainiansjooble<span>Jooble</span></a>
     </div>
     <div class="country-detail" id="country-germany">
       <div class="back-btn" onclick="backToCountries()">← Назад</div>
       <div style="font-size:18px;margin-bottom:14px;font-weight:700">🇩🇪 Німеччина</div>
-      <a class="job-btn" href="https://t.me/helpukrainiansjooble" target="_blank">@helpukrainiansjooble<span>Jooble</span></a>
-      <a class="job-btn" href="https://t.me/pracavpolsku" target="_blank">@pracavpolsku<span>Робота</span></a>
-      <a class="job-btn" href="https://t.me/europeservicepl" target="_blank">@europeservicepl<span>Europe Service</span></a>
+      <a class="job-btn" href="https://t.me/helpukrainiansjooble" target="_blank" rel="noopener noreferrer">@helpukrainiansjooble<span>Jooble</span></a>
+      <a class="job-btn" href="https://t.me/jobforukrainians" target="_blank" rel="noopener noreferrer">@jobforukrainians<span>JOB for Ukrainians</span></a>
+      <a class="job-btn" href="https://t.me/outjob" target="_blank" rel="noopener noreferrer">@outjob<span>Робота за кордоном</span></a>
     </div>
     <div class="country-detail" id="country-czech">
       <div class="back-btn" onclick="backToCountries()">← Назад</div>
       <div style="font-size:18px;margin-bottom:14px;font-weight:700">🇨🇿 Чехія</div>
-      <a class="job-btn" href="https://t.me/dobra_prace" target="_blank">@dobra_prace<span>Добра праця</span></a>
-      <a class="job-btn" href="https://t.me/helpukrainiansjooble" target="_blank">@helpukrainiansjooble<span>Jooble</span></a>
-      <a class="job-btn" href="https://t.me/europeservicepl" target="_blank">@europeservicepl<span>Europe Service</span></a>
+      <a class="job-btn" href="https://t.me/dobra_prace" target="_blank" rel="noopener noreferrer">@dobra_prace<span>Добра праця</span></a>
+      <a class="job-btn" href="https://t.me/helpukrainiansjooble" target="_blank" rel="noopener noreferrer">@helpukrainiansjooble<span>Jooble</span></a>
+      <a class="job-btn" href="https://t.me/europeservicepl" target="_blank" rel="noopener noreferrer">@europeservicepl<span>Europe Service</span></a>
     </div>
     <div class="country-detail" id="country-slovakia">
       <div class="back-btn" onclick="backToCountries()">← Назад</div>
       <div style="font-size:18px;margin-bottom:14px;font-weight:700">🇸🇰 Словаччина</div>
-      <a class="job-btn" href="https://t.me/helpukrainiansjooble" target="_blank">@helpukrainiansjooble<span>Jooble</span></a>
-      <a class="job-btn" href="https://t.me/ukrajincivsk" target="_blank">@ukrajincivsk<span>Українці в СК</span></a>
-      <a class="job-btn" href="https://t.me/slovachyna_pidtrymka" target="_blank">@slovachyna_pidtrymka<span>Підтримка</span></a>
+      <a class="job-btn" href="https://t.me/helpukrainiansjooble" target="_blank" rel="noopener noreferrer">@helpukrainiansjooble<span>Jooble</span></a>
+      <a class="job-btn" href="https://t.me/ukrajincivsk" target="_blank" rel="noopener noreferrer">@ukrajincivsk<span>Українці в СК</span></a>
+      <a class="job-btn" href="https://t.me/slovachyna_pidtrymka" target="_blank" rel="noopener noreferrer">@slovachyna_pidtrymka<span>Підтримка</span></a>
     </div>
     <div class="country-detail" id="country-italy">
       <div class="back-btn" onclick="backToCountries()">← Назад</div>
       <div style="font-size:18px;margin-bottom:14px;font-weight:700">🇮🇹 Італія</div>
-      <a class="job-btn" href="https://t.me/dodomu_italia_ucraina" target="_blank">@dodomu_italia_ucraina<span>Додому Італія</span></a>
-      <a class="job-btn" href="https://t.me/italia_info" target="_blank">@italia_info<span>Italia Info</span></a>
-      <a class="job-btn" href="https://t.me/helpukrainiansjooble" target="_blank">@helpukrainiansjooble<span>Jooble</span></a>
+      <a class="job-btn" href="https://t.me/dodomu_italia_ucraina" target="_blank" rel="noopener noreferrer">@dodomu_italia_ucraina<span>Додому Італія</span></a>
+      <a class="job-btn" href="https://t.me/italia_info" target="_blank" rel="noopener noreferrer">@italia_info<span>Italia Info</span></a>
+      <a class="job-btn" href="https://t.me/helpukrainiansjooble" target="_blank" rel="noopener noreferrer">@helpukrainiansjooble<span>Jooble</span></a>
     </div>
     <div class="country-detail" id="country-hungary">
       <div class="back-btn" onclick="backToCountries()">← Назад</div>
       <div style="font-size:18px;margin-bottom:14px;font-weight:700">🇭🇺 Угорщина</div>
-      <a class="job-btn" href="https://t.me/hungary_ukr" target="_blank">@hungary_ukr<span>Українці в Угорщині</span></a>
-      <a class="job-btn" href="https://t.me/dopomoga_hungary" target="_blank">@dopomoga_hungary<span>Допомога</span></a>
-      <a class="job-btn" href="https://t.me/helpukrainiansjooble" target="_blank">@helpukrainiansjooble<span>Jooble</span></a>
+      <a class="job-btn" href="https://t.me/hungary_ukr" target="_blank" rel="noopener noreferrer">@hungary_ukr<span>Українці в Угорщині</span></a>
+      <a class="job-btn" href="https://t.me/dopomoga_hungary" target="_blank" rel="noopener noreferrer">@dopomoga_hungary<span>Допомога</span></a>
+      <a class="job-btn" href="https://t.me/helpukrainiansjooble" target="_blank" rel="noopener noreferrer">@helpukrainiansjooble<span>Jooble</span></a>
     </div>
     <div class="country-detail" id="country-bulgaria">
       <div class="back-btn" onclick="backToCountries()">← Назад</div>
       <div style="font-size:18px;margin-bottom:14px;font-weight:700">🇧🇬 Болгарія</div>
-      <a class="job-btn" href="https://t.me/helpukrainiansjooble" target="_blank">@helpukrainiansjooble<span>Jooble</span></a>
+      <a class="job-btn" href="https://t.me/helpukrainiansjooble" target="_blank" rel="noopener noreferrer">@helpukrainiansjooble<span>Jooble</span></a>
     </div>
     <div class="country-detail" id="country-general">
       <div class="back-btn" onclick="backToCountries()">← Назад</div>
       <div style="font-size:18px;margin-bottom:14px;font-weight:700">🌍 Загальні</div>
-      <a class="job-btn" href="https://t.me/helpukrainiansjooble" target="_blank">@helpukrainiansjooble<span>Jooble</span></a>
-      <a class="job-btn" href="https://t.me/outjob" target="_blank">@outjob<span>Робота за кордоном</span></a>
-      <a class="job-btn" href="https://t.me/jobforukrainians" target="_blank">@jobforukrainians<span>JOB for Ukrainians</span></a>
-      <a class="job-btn" href="https://t.me/europeservicepl" target="_blank">@europeservicepl<span>Europe Service</span></a>
+      <a class="job-btn" href="https://t.me/helpukrainiansjooble" target="_blank" rel="noopener noreferrer">@helpukrainiansjooble<span>Jooble</span></a>
+      <a class="job-btn" href="https://t.me/outjob" target="_blank" rel="noopener noreferrer">@outjob<span>Робота за кордоном</span></a>
+      <a class="job-btn" href="https://t.me/jobforukrainians" target="_blank" rel="noopener noreferrer">@jobforukrainians<span>JOB for Ukrainians</span></a>
+      <a class="job-btn" href="https://t.me/europeservicepl" target="_blank" rel="noopener noreferrer">@europeservicepl<span>Europe Service</span></a>
     </div>
   </div>
 
   <script>
-    var MAIN_CURRENCIES = ['USD', 'EUR', 'PLN', 'GBP', 'CHF', 'CZK'];
-    var ratesMap = { UAH: 1 };
-    var ratesTimer = null;
+    const MAIN_CURRENCIES = ['USD', 'EUR', 'PLN', 'GBP', 'CHF', 'CZK'];
+    let ratesMap = { UAH: 1 };
+    let ratesTimer = null;
+
+    document.addEventListener('DOMContentLoaded', () => {
+      loadRates();
+      ratesTimer = setInterval(loadRates, 5 * 60 * 1000);
+    });
 
     function showPage(page) {
-      document.querySelectorAll('.page').forEach(function(p) { p.classList.remove('active'); });
-      document.querySelectorAll('.nav-btn').forEach(function(b) { b.classList.remove('active'); });
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
       document.getElementById('page-' + page).classList.add('active');
       document.getElementById('nav-' + page).classList.add('active');
       if (page === 'jobs') backToCountries();
@@ -272,41 +275,41 @@
       document.getElementById('ton-section').style.display = tab === 'ton' ? 'block' : 'none';
       document.getElementById('rates-section').style.display = tab === 'rates' ? 'block' : 'none';
       if (tab === 'rates') {
-        loadRates();
-        if (!ratesTimer) {
-          ratesTimer = setInterval(loadRates, 5 * 60 * 1000);
-        }
+        convert();
       }
     }
 
     async function loadRates() {
-      var list = document.getElementById('rates-list');
-      var updated = document.getElementById('rates-updated');
+      const list = document.getElementById('rates-list');
+      const updated = document.getElementById('rates-updated');
       try {
-        var res = await fetch('https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json');
-        var data = await res.json();
+        const res = await fetch('https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json');
+        if (!res.ok) throw new Error('Network response was not ok');
+        const data = await res.json();
+        
         ratesMap = { UAH: 1 };
-        for (var i = 0; i < data.length; i++) {
-          ratesMap[data[i].cc] = data[i].rate;
-        }
+        const dataMap = {};
 
-        var html = '';
-        for (var j = 0; j < MAIN_CURRENCIES.length; j++) {
-          var cc = MAIN_CURRENCIES[j];
-          var item = null;
-          for (var k = 0; k < data.length; k++) {
-            if (data[k].cc === cc) { item = data[k]; break; }
-          }
-          if (!item) continue;
-          html += '<div class="rate-row">';
-          html += '<div><div class="rate-code">' + item.cc + '</div>';
-          html += '<div class="rate-name">' + item.txt + '</div></div>';
-          html += '<div class="rate-value">' + item.rate.toFixed(2) + ' ₴</div>';
-          html += '</div>';
-        }
+        data.forEach(item => {
+          ratesMap[item.cc] = item.rate;
+          dataMap[item.cc] = item;
+        });
+
+        let html = '';
+        MAIN_CURRENCIES.forEach(cc => {
+          const item = dataMap[cc];
+          if (!item) return;
+          html += `<div class="rate-row">
+            <div>
+              <div class="rate-code">${item.cc}</div>
+              <div class="rate-name">${item.txt}</div>
+            </div>
+            <div class="rate-value">${item.rate.toFixed(2)} ₴</div>
+          </div>`;
+        });
 
         list.innerHTML = html || 'Немає даних';
-        var now = new Date();
+        const now = new Date();
         updated.textContent = 'оновлено ' + now.toLocaleTimeString('uk-UA', { hour: '2-digit', minute: '2-digit' });
         convert();
       } catch (e) {
@@ -316,29 +319,30 @@
     }
 
     function convert() {
-      var amount = parseFloat(document.getElementById('conv-amount').value) || 0;
-      var from = document.getElementById('conv-from').value;
-      var to = document.getElementById('conv-to').value;
-      var fromRate = ratesMap[from];
-      var toRate = ratesMap[to];
-      var el = document.getElementById('conv-result');
+      const amount = parseFloat(document.getElementById('conv-amount').value) || 0;
+      const from = document.getElementById('conv-from').value;
+      const to = document.getElementById('conv-to').value;
+      const fromRate = ratesMap[from];
+      const toRate = ratesMap[to];
+      const el = document.getElementById('conv-result');
+
       if (!fromRate || !toRate) {
         el.textContent = '—';
         return;
       }
-      var result = (amount * fromRate) / toRate;
+      const result = (amount * fromRate) / toRate;
       el.textContent = result.toLocaleString('uk-UA', { maximumFractionDigits: 2 }) + ' ' + to;
     }
 
     function openCountry(id) {
       document.getElementById('countries-list').style.display = 'none';
-      document.querySelectorAll('.country-detail').forEach(function(el) { el.classList.remove('active'); });
+      document.querySelectorAll('.country-detail').forEach(el => el.classList.remove('active'));
       document.getElementById('country-' + id).classList.add('active');
     }
 
     function backToCountries() {
       document.getElementById('countries-list').style.display = 'block';
-      document.querySelectorAll('.country-detail').forEach(function(el) { el.classList.remove('active'); });
+      document.querySelectorAll('.country-detail').forEach(el => el.classList.remove('active'));
     }
   </script>
 </body>
