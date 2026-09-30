@@ -112,6 +112,22 @@
       text-decoration: none; font-size: 14px; margin-bottom: 8px;
     }
     .job-btn span { display: block; color: #8b8b9e; font-size: 12px; margin-top: 2px; }
+
+    /* ДП Документ Стили */
+    .dp-country {
+      background: #121218; border: 1px solid #2a2a35;
+      border-radius: 16px; padding: 16px; margin-bottom: 14px;
+    }
+    .dp-country-title {
+      font-size: 16px; font-weight: 700; color: #00e676;
+      margin-bottom: 10px; display: flex; align-items: center; gap: 8px;
+    }
+    .dp-address-item {
+      padding: 10px 0; border-bottom: 1px solid #1f1f28; font-size: 14px;
+    }
+    .dp-address-item:last-child { border-bottom: none; }
+    .dp-city { font-weight: 700; color: #fff; margin-bottom: 2px; }
+    .dp-street { color: #8b8b9e; font-size: 13px; line-height: 1.4; }
   </style>
 </head>
 <body>
@@ -135,7 +151,7 @@
     <div id="ton-section">
       <div class="buttons">
         <a class="btn btn-card" href="https://krak.app/@Goldstar" target="_blank" rel="noopener noreferrer">💳 Відкрити карту</a>
-        <a class="btn btn-swap" href="https://app.ston.fi/" target="_blank" rel="noopener noreferrer">🔄 Обмін</a>
+        <div class="btn btn-swap" onclick="showPage('dp')">🏢 ДП Документ</div>
         <a class="btn btn-buy" href="https://www.flixbus.ua" target="_blank" rel="noopener noreferrer">🚌 Flixbus</a>
         <a class="btn btn-ads" href="https://t.me/obyavIeni" target="_blank" rel="noopener noreferrer">📋 Оголошення</a>
       </div>
@@ -176,6 +192,111 @@
           </select>
         </div>
         <div class="conv-result" id="conv-result">—</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Страница ДП Документ -->
+  <div class="page" id="page-dp">
+    <div class="back-btn" onclick="showPage('wallet')">← Назад на головну</div>
+    <div style="font-size:20px;margin-bottom:6px;font-weight:700;text-align:center;">🏢 ДП «Документ»</div>
+    <p style="color:#8b8b9e;font-size:13px;text-align:center;margin-bottom:16px;">Паспортний сервіс (Адреси центрів)</p>
+
+    <a class="btn btn-buy" href="https://pasport.org.ua/" target="_blank" rel="noopener noreferrer" style="margin-bottom:16px;">📅 Запис в електронну чергу</a>
+
+    <div class="dp-country">
+      <div class="dp-country-title">🇵🇱 Польща</div>
+      <div class="dp-address-item">
+        <div class="dp-city">Варшава</div>
+        <div class="dp-street">Al. Jerozolimskie 179 (ТЦ Blue City, 2 поверх)</div>
+      </div>
+      <div class="dp-address-item">
+        <div class="dp-city">Краків</div>
+        <div class="dp-street">ul. Pawia 5 (ТЦ Galeria Krakowska, 2 поверх)</div>
+      </div>
+      <div class="dp-address-item">
+        <div class="dp-city">Гданськ</div>
+        <div class="dp-street">C.H. Riviera, ul. Kazimierza Górskiego 2 (м. Гдиня)</div>
+      </div>
+      <div class="dp-address-item">
+        <div class="dp-city">Вроцлав</div>
+        <div class="dp-street">ul. Paprotna 7 (ТЦ Marino)</div>
+      </div>
+    </div>
+
+    <div class="dp-country">
+      <div class="dp-country-title">🇩🇪 Німеччина</div>
+      <div class="dp-address-item">
+        <div class="dp-city">Берлін</div>
+        <div class="dp-street">Am Treptower Park 14 (Park Center Treptow, 2 поверх)</div>
+      </div>
+      <div class="dp-address-item">
+        <div class="dp-city">Кельн</div>
+        <div class="dp-street">Breslauer Platz (автобусна станція)</div>
+      </div>
+    </div>
+
+    <div class="dp-country">
+      <div class="dp-country-title">🇨🇿 Чехія</div>
+      <div class="dp-address-item">
+        <div class="dp-city">Прага</div>
+        <div class="dp-street">OC Nákupní centrum Galerie Harfa, Českomoravská 2420/15a</div>
+      </div>
+    </div>
+
+    <div class="dp-country">
+      <div class="dp-country-title">🇸🇰 Словаччина</div>
+      <div class="dp-address-item">
+        <div class="dp-city">Братислава</div>
+        <div class="dp-street">Mlynské Nivy 5A (ТЦ Nivy)</div>
+      </div>
+    </div>
+
+    <div class="dp-country">
+      <div class="dp-country-title">🇮🇹 Італія</div>
+      <div class="dp-address-item">
+        <div class="dp-city">Мілан</div>
+        <div class="dp-street">Via Eugenio di Savoia, 1 (Centro Commerciale Fiordaliso)</div>
+      </div>
+    </div>
+
+    <div class="dp-country">
+      <div class="dp-country-title">🇪🇸 Іспанія</div>
+      <div class="dp-address-item">
+        <div class="dp-city">Мадрид</div>
+        <div class="dp-street">C. Alto de del Retiro (ТЦ Plenilunio)</div>
+      </div>
+      <div class="dp-address-item">
+        <div class="dp-city">Валенсія</div>
+        <div class="dp-street">C/ Xàtiva 24 (Estación del Norte)</div>
+      </div>
+    </div>
+
+    <div class="dp-country">
+      <div class="dp-country-title">🇹🇷 Туреччина</div>
+      <div class="dp-address-item">
+        <div class="dp-city">Стамбул</div>
+        <div class="dp-street">London Asfaltı E-5 Karayolu Üzeri, Airport AVM, Bakırköy</div>
+      </div>
+    </div>
+
+    <div class="dp-country">
+      <div class="dp-country-title">🇺🇦 Україна</div>
+      <div class="dp-address-item">
+        <div class="dp-city">Київ</div>
+        <div class="dp-street">пр-т С. Бандери, 23 (ТЦ Gorodok Gallery) / вул. В. Чорновола, 25</div>
+      </div>
+      <div class="dp-address-item">
+        <div class="dp-city">Львів</div>
+        <div class="dp-street">вул. Кульпарківська, 226А (ТЦ Victoria Gardens) / вул. Ряшівська, 2</div>
+      </div>
+      <div class="dp-address-item">
+        <div class="dp-city">Одеса</div>
+        <div class="dp-street">вул. Катерининська, 27 (ТЦ Kadorr)</div>
+      </div>
+      <div class="dp-address-item">
+        <div class="dp-city">Дніпро</div>
+        <div class="dp-street">вул. П. Ниринберга, 10</div>
       </div>
     </div>
   </div>
@@ -264,9 +385,16 @@
     function showPage(page) {
       document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
       document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-      document.getElementById('page-' + page).classList.add('active');
-      document.getElementById('nav-' + page).classList.add('active');
-      if (page === 'jobs') backToCountries();
+      
+      const targetPage = document.getElementById('page-' + page);
+      if (targetPage) targetPage.classList.add('active');
+
+      if (page === 'wallet' || page === 'dp') {
+        document.getElementById('nav-wallet').classList.add('active');
+      } else if (page === 'jobs') {
+        document.getElementById('nav-jobs').classList.add('active');
+        backToCountries();
+      }
     }
 
     function switchTab(tab) {
@@ -290,60 +418,4 @@
         ratesMap = { UAH: 1 };
         const dataMap = {};
 
-        data.forEach(item => {
-          ratesMap[item.cc] = item.rate;
-          dataMap[item.cc] = item;
-        });
-
-        let html = '';
-        MAIN_CURRENCIES.forEach(cc => {
-          const item = dataMap[cc];
-          if (!item) return;
-          html += `<div class="rate-row">
-            <div>
-              <div class="rate-code">${item.cc}</div>
-              <div class="rate-name">${item.txt}</div>
-            </div>
-            <div class="rate-value">${item.rate.toFixed(2)} ₴</div>
-          </div>`;
-        });
-
-        list.innerHTML = html || 'Немає даних';
-        const now = new Date();
-        updated.textContent = 'оновлено ' + now.toLocaleTimeString('uk-UA', { hour: '2-digit', minute: '2-digit' });
-        convert();
-      } catch (e) {
-        list.innerHTML = 'Помилка завантаження курсу НБУ';
-        updated.textContent = 'помилка';
-      }
-    }
-
-    function convert() {
-      const amount = parseFloat(document.getElementById('conv-amount').value) || 0;
-      const from = document.getElementById('conv-from').value;
-      const to = document.getElementById('conv-to').value;
-      const fromRate = ratesMap[from];
-      const toRate = ratesMap[to];
-      const el = document.getElementById('conv-result');
-
-      if (!fromRate || !toRate) {
-        el.textContent = '—';
-        return;
-      }
-      const result = (amount * fromRate) / toRate;
-      el.textContent = result.toLocaleString('uk-UA', { maximumFractionDigits: 2 }) + ' ' + to;
-    }
-
-    function openCountry(id) {
-      document.getElementById('countries-list').style.display = 'none';
-      document.querySelectorAll('.country-detail').forEach(el => el.classList.remove('active'));
-      document.getElementById('country-' + id).classList.add('active');
-    }
-
-    function backToCountries() {
-      document.getElementById('countries-list').style.display = 'block';
-      document.querySelectorAll('.country-detail').forEach(el => el.classList.remove('active'));
-    }
-  </script>
-</body>
-</html>
+        data.for
